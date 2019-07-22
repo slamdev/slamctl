@@ -4,8 +4,7 @@ language: minimal
 services:
   - docker
 
-script: make docker-build
-if: tag IS blank
+script: test -n "$TRAVIS_TAG" || make docker-build
 
 deploy:
   - provider: script
