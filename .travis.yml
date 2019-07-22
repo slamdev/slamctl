@@ -1,0 +1,13 @@
+sudo: required
+
+services:
+  - docker
+
+script: make docker-build
+
+deploy:
+  - provider: script
+    script: docker login -u=slamdev -p="$DOCKER_PASSWORD" && make docker-release
+    on:
+      tags: true
+      condition: $TRAVIS_OS_NAME = linux

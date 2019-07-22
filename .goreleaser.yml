@@ -1,0 +1,25 @@
+dist: bin
+before:
+  hooks:
+    - go mod download
+builds:
+  - id: slamctl
+    main: ./cmd/slamctl/main.go
+    env:
+      - CGO_ENABLED=0
+  - id: slamctl-daemon
+    binary: slamctl-daemon
+    main: ./cmd/daemon/main.go
+    hooks:
+      pre: make pack-assets
+    env:
+      - CGO_ENABLED=0
+dockers:
+  - binaries:
+      - slamctl-daemon
+    dockerfile: Dockerfile
+    image_templates:
+      - slamdev/slamctl-daemon:latest
+      - slamdev/slamctl-daemon:{{ .Tag }}
+changelog:
+  skip: true

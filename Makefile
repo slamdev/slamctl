@@ -19,6 +19,20 @@ ifeq ($(shell which packr2),)
 endif
 	cd internal && packr2
 
+release:
+ifeq ($(shell which $$TMPDIR/goreleaser),)
+	curl -sL https://git.io/goreleaser | bash -s -- -v
+endif
+	$$TMPDIR/goreleaser --snapshot --skip-publish --rm-dist
+
 clean:
 	cd internal && packr2 clean
 	rm -rf bin/ web/dist
+
+docker-build:
+	docker build -t builder -f build/ci/Dockerfile .
+	docker run -v $$(pwd):/opt builder make build
+
+docker-release:
+	docker build -t builder -f build/ci/Dockerfile .
+	docker run -v $$(pwd):/opt builder make release
