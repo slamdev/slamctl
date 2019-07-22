@@ -14,6 +14,15 @@ builds:
       pre: make pack-assets
     env:
       - CGO_ENABLED=0
+archives:
+  - id: slamctl
+    builds:
+      - slamctl
+    name_template: slamctl_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}
+  - id: slamctl-daemon
+    builds:
+      - slamctl-daemon
+    name_template: slamctl-daemon_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}
 dockers:
   - binaries:
       - slamctl-daemon
