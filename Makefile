@@ -23,7 +23,7 @@ release:
 ifeq ($(shell which /tmp/goreleaser),)
 	curl -sL https://git.io/goreleaser | TMPDIR=/tmp bash -s -- -v
 endif
-	$$TMPDIR/goreleaser --snapshot --skip-publish --rm-dist
+	$$TMPDIR/goreleaser --rm-dist
 
 clean:
 	cd internal && packr2 clean
