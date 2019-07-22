@@ -1,3 +1,5 @@
 .idea/
 bin/
+packrd/
 .DS_Store
+*-packr.go
