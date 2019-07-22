@@ -1,6 +1,6 @@
 FROM alpine
 
-RUN apk add --no-cache git make musl-dev go \
+RUN apk add --no-cache git make musl-dev go bash curl \
  && apk --no-cache add --repository http://dl-cdn.alpinelinux.org/alpine/edge/main nodejs npm \
  && go version && node --version && npm --version
 
