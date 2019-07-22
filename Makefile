@@ -11,7 +11,7 @@ build/daemon: build/web pack-assets
 
 build/web:
 	@echo "Building web"
-	cd web && npm run build
+	cd web && npm install && npm run build
 
 pack-assets: build/web
 ifeq ($(shell which packr2),)
