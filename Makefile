@@ -20,8 +20,8 @@ endif
 	cd internal && packr2
 
 release:
-ifeq ($(shell which $$TMPDIR/goreleaser),)
-	curl -sL https://git.io/goreleaser | bash -s -- -v
+ifeq ($(shell which /tmp/goreleaser),)
+	curl -sL https://git.io/goreleaser | TMPDIR=/tmp bash -s -- -v
 endif
 	$$TMPDIR/goreleaser --snapshot --skip-publish --rm-dist
 
