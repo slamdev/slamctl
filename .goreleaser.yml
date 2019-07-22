@@ -17,7 +17,7 @@ builds:
 dockers:
   - binaries:
       - slamctl-daemon
-    dockerfile: Dockerfile
+    dockerfile: build/package/Dockerfile
     image_templates:
       - slamdev/slamctl-daemon:latest
       - slamdev/slamctl-daemon:{{ .Tag }}
